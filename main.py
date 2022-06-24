@@ -1,12 +1,10 @@
-from openpyxl import Workbook
 import openpyxl
-
-import smtplib, ssl
+import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import datetime
 import time
-from datetime import date, timedelta
+from datetime import date
 
 
 id_cell_mail = []
@@ -36,7 +34,7 @@ def ecrire_date():
   global relance_date
 
   fichier2 = open("assets/date.txt", 'a')
-  fichier2.write("\n Relance execute le " + str(date.today()) + "pour les candidatures datant de 7 jours")
+  fichier2.write("\n Relance execute le " + str(date.today()) + " pour 7j avant")
 
 
 def excel_find():
@@ -85,7 +83,7 @@ https://www.linkedin.com/in/alexandre-buisset/ \n"
   mailserver.ehlo()
   mailserver.starttls()
   mailserver.ehlo()
-  mailserver.login('aleexandre03122002@gmail.com', 'Steelataure0312')
+  mailserver.login('aleexandre03122002@gmail.com', 'cpmabvpaoshxutuf')
   mailserver.sendmail('aleexandre03122002@gmail.com', f"{mail_envoie[x]}", msg.as_string())
   mailserver.quit()
 
@@ -99,6 +97,6 @@ def run():
   if ENVOI == True:
     for x in range(len(mail_envoie)):
       envoie_mail()
+    print(f"{len(mail_envoie)} candidature(s) a bien été envoyé")
 
 run()
-
