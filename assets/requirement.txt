@@ -1,3 +1,4 @@
 openpyxl
 email_to
 smtplib
+termcolor

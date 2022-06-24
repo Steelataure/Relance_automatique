@@ -3,8 +3,8 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import datetime
-import time
 from datetime import date
+from termcolor import colored
 
 
 id_cell_mail = []
@@ -15,7 +15,6 @@ poste = []
 current_date = date.today()   
 delai = datetime.timedelta(7)
 relance_date = (current_date - delai)
-
 
 
 def verif_date():
@@ -41,7 +40,7 @@ def excel_find():
   workbook = openpyxl.load_workbook('assets/candidatures.xlsx', read_only = True)
   sheet = workbook.active
 
-  for row in sheet.iter_rows(min_row = 1, max_row = 350, min_col = 3, max_col = 9):
+  for row in sheet.iter_rows(min_row = 1, max_row = 500, min_col = 3, max_col = 9):
     for cell in row:
       
       if str(cell.value) == str(relance_date) + " 00:00:00":
@@ -97,6 +96,8 @@ def run():
   if ENVOI == True:
     for x in range(len(mail_envoie)):
       envoie_mail()
-    print(f"{len(mail_envoie)} candidature(s) a bien été envoyé")
+
+    print(colored(f"\n \n {len(mail_envoie)} candidature(s) a bien été envoyé", 'green'))
+    input()
 
 run()
