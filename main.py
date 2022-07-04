@@ -43,11 +43,11 @@ def excel_find():
   workbook = openpyxl.load_workbook('assets/candidatures.xlsx', read_only = True)
   sheet = workbook.active
 
-  for row in sheet.iter_rows(min_row = 1, max_row = 1000, min_col = 3, max_col = 9):
+  for row in sheet.iter_rows(min_row = 1, max_row = 1000, min_col = 0, max_col = 10):
     for cell in row:
       
       if str(cell.value) == str(relance_date) + " 00:00:00":
-        id_cell_mail.append((cell.row, cell.column + 5))
+        id_cell_mail.append((cell.row, cell.column + 3))
         id_cell_poste.append((cell.row, cell.column -1))
         
 
