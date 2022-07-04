@@ -7,7 +7,6 @@ import smtplib
 import email
 
 from json_action import *
-from message import *
 
 
 id_cell_mail = []
@@ -17,7 +16,7 @@ poste = []
 
 current_date = date.today()  
 delai = datetime.timedelta(7) # 7 Jours de délai avant envoie du mail
-relance_date = (current_date - delai)
+relance_date = (current_date - delai) # La date de la relance
 
 
 def verif_date():
@@ -79,6 +78,7 @@ Je vous prie d’agréer, Madame, Monsieur, mes salutations distinguées.\n\n\
 [Prénom Nom]\n\
 [Votre numéro téléphone]\n\
 [Votre lien Linkedin] \n"
+
 
   msg.attach(MIMEText(message))
   mailserver = smtplib.SMTP('smtp.gmail.com', 587)
