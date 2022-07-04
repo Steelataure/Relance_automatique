@@ -5,3 +5,5 @@ data = json.load(file)
 
 email = data["Login"][0]["email"]
 password = data["Login"][0]["password"]
+
+file.close()

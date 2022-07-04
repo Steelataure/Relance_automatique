@@ -1,13 +1,13 @@
-import email
 import openpyxl
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 import datetime
 from datetime import date
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import smtplib
+import email
 
 from json_action import *
-
+from message import *
 
 
 id_cell_mail = []
@@ -15,8 +15,8 @@ id_cell_poste = []
 mail_envoie = []
 poste = []
 
-current_date = date.today()   
-delai = datetime.timedelta(7)
+current_date = date.today()  
+delai = datetime.timedelta(7) # 7 Jours de délai avant envoie du mail
 relance_date = (current_date - delai)
 
 
@@ -38,6 +38,7 @@ def ecrire_date():
   fichier2 = open("assets/date.txt", 'a')
   fichier2.write("\n Relance execute le " + str(date.today()) + " pour 7j avant")
 
+# ---------------------------------------------------------------
 
 def excel_find():
   workbook = openpyxl.load_workbook('assets/candidatures.xlsx', read_only = True)
@@ -61,7 +62,7 @@ def excel_find():
 
   workbook.close()
 
-
+# ---------------------------------------------------------------
 
 def envoie_mail():
   msg = MIMEMultipart()
@@ -79,7 +80,6 @@ Je vous prie d’agréer, Madame, Monsieur, mes salutations distinguées.\n\n\
 [Votre numéro téléphone]\n\
 [Votre lien Linkedin] \n"
 
-
   msg.attach(MIMEText(message))
   mailserver = smtplib.SMTP('smtp.gmail.com', 587)
   mailserver.ehlo()
@@ -90,7 +90,10 @@ Je vous prie d’agréer, Madame, Monsieur, mes salutations distinguées.\n\n\
   mailserver.quit()
 
 
-def run():
+# ---------------------------------------------------------------
+
+
+if __name__ == '__main__':
   global x, ENVOI
 
   verif_date()
@@ -102,5 +105,3 @@ def run():
 
     print(f"\n \n {len(mail_envoie)} candidature(s) a bien été envoyé")
     input()
-
-run()
