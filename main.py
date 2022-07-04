@@ -1,10 +1,13 @@
+import email
 import openpyxl
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import datetime
 from datetime import date
-from termcolor import colored
+
+from json_action import *
+
 
 
 id_cell_mail = []
@@ -40,11 +43,11 @@ def excel_find():
   workbook = openpyxl.load_workbook('assets/candidatures.xlsx', read_only = True)
   sheet = workbook.active
 
-  for row in sheet.iter_rows(min_row = 1, max_row = 500, min_col = 3, max_col = 9):
+  for row in sheet.iter_rows(min_row = 1, max_row = 1000, min_col = 3, max_col = 9):
     for cell in row:
       
       if str(cell.value) == str(relance_date) + " 00:00:00":
-        id_cell_mail.append((cell.row, cell.column + 6))
+        id_cell_mail.append((cell.row, cell.column + 5))
         id_cell_poste.append((cell.row, cell.column -1))
         
 
@@ -62,19 +65,19 @@ def excel_find():
 
 def envoie_mail():
   msg = MIMEMultipart()
-  msg['From'] = 'aleexandre03122002@gmail.com'
+  msg['From'] = email
   msg['To'] = f"{mail_envoie[x]}"
 
   msg['Subject'] = f"Relance candidature au poste de {poste[x]}"
   message = f"Madame, Monsieur,\n\n\
 Pour faire suite à ma candidature envoyée le {relance_date} pour le poste de {poste[x]} je me permets de revenir vers vous pour savoir qu'elle est l’avancée du processus de recrutement.\n\
 Je suis toujours très intéressé par le poste de {poste[x]} au sein de votre entreprise, qui correspond à mes compétences en développement informatique et à mes ambitions professionnelles.\n\
-Pour avoir un aperçu de mon travail, voici le lien vers mon github : https://github.com/Steelataure\n\n\
+Pour avoir un aperçu de mon travail, voici le lien vers mon github : [Votre lien Github]\n\n\
 Je reste à votre entière disposition pour convenir d’un rendez-vous afin de vous faire part de ma motivation et de mes capacités pour le poste de {poste[x]}.\n\n\
 Je vous prie d’agréer, Madame, Monsieur, mes salutations distinguées.\n\n\
-Alexandre Buisset\n\
-06 40 81 50 99\n\
-https://www.linkedin.com/in/alexandre-buisset/ \n"
+[Prénom Nom]\n\
+[Votre numéro téléphone]\n\
+[Votre lien Linkedin] \n"
 
 
   msg.attach(MIMEText(message))
@@ -82,8 +85,8 @@ https://www.linkedin.com/in/alexandre-buisset/ \n"
   mailserver.ehlo()
   mailserver.starttls()
   mailserver.ehlo()
-  mailserver.login('aleexandre03122002@gmail.com', 'cpmabvpaoshxutuf')
-  mailserver.sendmail('aleexandre03122002@gmail.com', f"{mail_envoie[x]}", msg.as_string())
+  mailserver.login(email, password)
+  mailserver.sendmail(email, f"{mail_envoie[x]}", msg.as_string())
   mailserver.quit()
 
 
@@ -97,7 +100,7 @@ def run():
     for x in range(len(mail_envoie)):
       envoie_mail()
 
-    print(colored(f"\n \n {len(mail_envoie)} candidature(s) a bien été envoyé", 'green'))
+    print(f"\n \n {len(mail_envoie)} candidature(s) a bien été envoyé")
     input()
 
 run()

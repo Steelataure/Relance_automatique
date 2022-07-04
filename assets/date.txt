@@ -1,25 +1,2 @@
-DATES D'EXECUTION DU PROGRAMME :
 
- Relance execute le 2022-05-27pour les candidatures datant de 7 jours
- Relance execute le 2022-05-28pour les candidatures datant de 7 jours
- Relance execute le 2022-05-29pour les candidatures datant de 7 jours
- Relance execute le 2022-05-30pour les candidatures datant de 7 jours
- Relance execute le 2022-05-31pour les candidatures datant de 7 jours
- Relance execute le 2022-06-01pour les candidatures datant de 7 jours
- Relance execute le 2022-06-02pour les candidatures datant de 7 jours
- Relance execute le 2022-06-03pour les candidatures datant de 7 jours
- Relance execute le 2022-06-04pour les candidatures datant de 7 jours
- Relance execute le 2022-06-05pour les candidatures datant de 7 jours
- Relance execute le 2022-06-06pour les candidatures datant de 7 jours
- Relance execute le 2022-06-07pour les candidatures datant de 7 jours
- Relance execute le 2022-06-11pour les candidatures datant de 7 jours
- Relance execute le 2022-06-12 pour 7j avant
- Relance execute le 2022-06-14 pour 7j avant
- Relance execute le 2022-06-15 pour 7j avant
- Relance execute le 2022-06-17 pour 7j avant
- Relance execute le 2022-06-18 pour 7j avant
- Relance execute le 2022-06-19 pour 7j avant
- Relance execute le 2022-06-21 pour 7j avant
- Relance execute le 2022-06-22 pour 7j avant
- Relance execute le 2022-06-23 pour 7j avant
- Relance execute le 2022-06-24 pour 7j avant
+ Relance execute le 2022-07-04 pour 7j avant

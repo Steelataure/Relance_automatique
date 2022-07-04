@@ -1,0 +1,7 @@
+{ 
+    "Login" : [
+    { "email" : "exemple@gmail.com",
+        "password" : "exemple_password" 
+    }
+]
+}
