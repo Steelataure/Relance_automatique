@@ -1,3 +1,4 @@
+from email import message
 import openpyxl
 import datetime
 from datetime import date
@@ -7,6 +8,7 @@ import smtplib
 import email
 
 from json_action import *
+
 
 
 id_cell_mail = []
@@ -69,7 +71,9 @@ def envoie_mail():
   msg['To'] = f"{mail_envoie[x]}"
 
   msg['Subject'] = f"Relance candidature au poste de {poste[x]}"
-  message = f"Madame, Monsieur,\n\n\
+
+  message = {
+  "core_message" : f"Madame, Monsieur,\n\n\
 Pour faire suite à ma candidature envoyée le {relance_date} pour le poste de {poste[x]} je me permets de revenir vers vous pour savoir qu'elle est l’avancée du processus de recrutement.\n\
 Je suis toujours très intéressé par le poste de {poste[x]} au sein de votre entreprise, qui correspond à mes compétences en développement informatique et à mes ambitions professionnelles.\n\
 Pour avoir un aperçu de mon travail, voici le lien vers mon github : [Votre lien Github]\n\n\
@@ -78,7 +82,8 @@ Je vous prie d’agréer, Madame, Monsieur, mes salutations distinguées.\n\n\
 [Prénom Nom]\n\
 [Votre numéro téléphone]\n\
 [Votre lien Linkedin] \n"
-
+}
+  
 
   msg.attach(MIMEText(message))
   mailserver = smtplib.SMTP('smtp.gmail.com', 587)
@@ -105,3 +110,5 @@ if __name__ == '__main__':
 
     print(f"\n \n {len(mail_envoie)} candidature(s) a bien été envoyé")
     input()
+
+
