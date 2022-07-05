@@ -10,7 +10,6 @@ import email
 from json_action import *
 
 
-
 id_cell_mail = []
 id_cell_poste = []
 mail_envoie = []
