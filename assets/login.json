@@ -1,7 +1,7 @@
 { 
     "Login" : [
-    { "email" : "your_email@gmail.com",
-        "password" : "your_auth_password" 
+    { "email" : "",
+        "password" : "" 
     }
 ]
 }
