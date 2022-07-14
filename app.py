@@ -18,6 +18,7 @@ current_date = date.today()
 delai = datetime.timedelta(7) # 7 Jours de délai avant envoie du mail
 relance_date = (current_date - delai) # La date de la relance
 
+# ---------------------------------------------------------------
 
 def verif_date():
   global ENVOI
@@ -65,15 +66,11 @@ def excel_find():
 
 def envoie_mail():
 
+# Custom message
+# Ne marche pas avec l'executable mais en lancant le script
+# Pour choisir ce mode, dans login.json, passer la valeur de mode à 2
 
-  msg = MIMEMultipart()
-  msg['From'] = email
-  msg['To'] = f"{mail_envoie[x]}"
-
-  msg['Subject'] = f"Relance candidature au poste de {poste[x]}"
-
-
-  message = {
+  message2option = {
   "core_message" : f"Madame, Monsieur,\n\n\
 Pour faire suite à ma candidature envoyée le {relance_date} pour le poste de {poste[x]} je me permets de revenir vers vous pour savoir qu'elle est l’avancée du processus de recrutement.\n\
 Je suis toujours très intéressé par le poste de {poste[x]} au sein de votre entreprise, qui correspond à mes compétences en développement informatique et à mes ambitions professionnelles.\n\
@@ -84,9 +81,21 @@ Je vous prie d’agréer, Madame, Monsieur, mes salutations distinguées.\n\n\
 [Votre numéro téléphone]\n\
 [Votre lien Linkedin] \n"
 }
-  
 
-  msg.attach(MIMEText(str(message["core_message"])))
+  message_file = open('assets/relance_message.txt', 'r', encoding = 'utf-8')
+  message_data = message_file.read()
+      
+  msg = MIMEMultipart()
+  msg['From'] = email
+  msg['To'] = f"{mail_envoie[x]}"
+
+  msg['Subject'] = f"Relance candidature au poste de {poste[x]}"
+
+  if mode != 1:
+    msg.attach(MIMEText(message2option))
+  else:  
+    msg.attach(MIMEText(message_data))
+
   mailserver = smtplib.SMTP('smtp.gmail.com', 587)
   mailserver.ehlo()
   mailserver.starttls()

@@ -1,7 +1,9 @@
 { 
     "Login" : [
-    { "email" : "",
-        "password" : "" 
+    { "email" : "your_email@gmail.com",
+        "password" : "your_password",
+
+        "mode" : "1"
     }
 ]
 }
